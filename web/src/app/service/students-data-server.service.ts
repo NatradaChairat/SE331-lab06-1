@@ -16,6 +16,19 @@ export class StudentsDataServerService {
   }
 
   getStudent(id: number) {
-    return null;
+    let student: Student;
+    return this.http.get('http://localhost:8080/student/'+id)
+      //.map(res => res.json());
+      .map((res:Response) => {
+        if(res){
+          if(res.status ===200){
+            return res.json();
+          }
+          if(res.status ===204){
+            return null;
+          }
+        }
+
+      });
   }
 }

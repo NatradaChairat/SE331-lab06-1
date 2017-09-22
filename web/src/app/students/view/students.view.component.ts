@@ -11,10 +11,19 @@ import 'rxjs/add/operator/switchMap';
 export class StudentsViewComponent {
   constructor(private route: ActivatedRoute, private studentDataService:StudentsDataService) {}
    student:Student;
+   isNoData: boolean;
    ngOnInit() {
-      this.route.params
-        .switchMap((params:Params) => this.studentDataService.getStudent(+params['id']))
-        .subscribe((student:Student) => this.student = student);
+     this.isNoData = false;
 
+      this.route.params
+        //.switchMap((params:Params) => this.studentDataService.getStudent(+params['id']))
+        //.subscribe((student:Student) => this.student = student);
+        .switchMap((params:Params) => this.studentDataService.getStudent(+params['id']))
+        .subscribe((student:Student)=>{
+          if(student!= null)
+            this.student= student;
+          else
+            this.isNoData = true;
+     });
   }
 }

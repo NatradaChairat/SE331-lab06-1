@@ -1,10 +1,10 @@
-package camt.cbsd.lab05.service;
+package camt.cbsd.lab05.dao;
 
 import camt.cbsd.lab05.entity.Student;
 
 import java.util.List;
 
-public interface StudentService {
+public interface StudentDao {
     List<Student> getStudents();
     Student findById(long id);
 }
